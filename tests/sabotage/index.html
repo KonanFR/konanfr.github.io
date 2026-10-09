@@ -310,7 +310,7 @@ var QUESTIONS = [
 ];
 
 var LINK = "https://t.me/KononenkoCoach";
-var API = "https://script.google.com/macros/s/AKfycbxf5iVCldV4wMcYnJfopoPcW9ixWAxwf6bNffCH_y-Udyq_3B1o4msnmZ43EP1NvrbD/exec";
+var API = "https://script.google.com/macros/s/AKfycbwIyFO4HhEoB5psvXAEGj63qf4rbzRLtxvKlNzeHHqk4fT3l7iQNib0NGkPGLLx2KEL/exec";
 
 // Надсилає подію на сервер. Якщо сервер не відповів, тест усе одно працює.
 function track(payload) {
@@ -325,13 +325,14 @@ function begin() {
   state = { i: 0, picks: [] };
   renderQuestion();
   show("quiz");
-  track({ event: "start" });
 }
 
 function report() {
   var s = score();
   var res = pickTop(s);
-  track({ event: "finish", result: s.H >= 5 ? "H" : res.primary, scores: s });
+  var healthy = s.H >= 5;
+  var results = healthy ? ["H"] : [res.primary].concat(res.tied);
+  track({ event: "finish", results: results, scores: s });
 }
 var ORDER = ["P", "S", "O", "R", "D"];
 var state = { i: 0, picks: [] };
@@ -449,8 +450,6 @@ function renderResult(sel) {
     el.addEventListener("click", function () { renderResult(el.getAttribute("data-k")); });
   });
   $("again").addEventListener("click", begin);
-  var cta = $("result").querySelector("[data-cta]");
-  if (cta) cta.addEventListener("click", function () { track({ event: "cta", result: cta.getAttribute("data-cta") }); });
   show("result");
 }
 
