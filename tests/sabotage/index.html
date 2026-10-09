@@ -313,11 +313,14 @@ var LINK = "https://t.me/KononenkoCoach";
 var API = "https://script.google.com/macros/s/AKfycbwIyFO4HhEoB5psvXAEGj63qf4rbzRLtxvKlNzeHHqk4fT3l7iQNib0NGkPGLLx2KEL/exec";
 
 // Надсилає подію на сервер. Якщо сервер не відповів, тест усе одно працює.
+// text/plain навмисно: інший Content-Type змушує браузер спершу слати
+// CORS-preflight (OPTIONS), якого Apps Script не обробляє, і запит губиться.
+// Сам скрипт однаково читає тіло як JSON, тип заголовка йому не важливий.
 function track(payload) {
   try {
     var body = JSON.stringify(payload);
-    if (navigator.sendBeacon && navigator.sendBeacon(API, new Blob([body], { type: "application/json" }))) return;
-    fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: body, keepalive: true }).catch(function () {});
+    if (navigator.sendBeacon && navigator.sendBeacon(API, new Blob([body], { type: "text/plain" }))) return;
+    fetch(API, { method: "POST", headers: { "Content-Type": "text/plain" }, body: body, keepalive: true }).catch(function () {});
   } catch (e) {}
 }
 
