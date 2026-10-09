@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- © 2026 @kononenko.blog. Авторський тест. Копіювання без письмової згоди авторки заборонено. t.me/KononenkoCoach -->
+<title>Як ти саботуєш свій ріст</title>
+<meta name="description" content="Пройди тест, щоб побачити свій тип і зрозуміти, що саме гальмує твій розвиток.">
+<meta name="theme-color" content="#FDF8F3">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:title" content="Як ти саботуєш свій ріст?">
+<meta property="og:description" content="Пройди тест, щоб побачити свій тип і зрозуміти, що саме гальмує твій розвиток.">
+<meta property="og:url" content="https://konanfr.github.io/tests/sabotage/">
+<meta property="og:image" content="https://konanfr.github.io/tests/sabotage/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23628CC1'/%3E%3C/svg%3E">
+<style>
+/* Layout: one calm column, three states (intro, question, result). Brand: cream paper, blue accent, caps Manrope headlines. */
+:root {
+  --bg: #FDF8F3;
+  --surface: #FFFFFF;
+  --fg: #1C1C1C;
+  --muted: #6E6A63;
+  --line: #E8E0D6;
+  --accent: #628CC1;
+  --accent-ink: #3E6896;
+  --on-accent: #FFFFFF;
+  --tint: #EAF1FA;
+  --font-display: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14171C; --surface: #1D2128; --fg: #F2EEE8; --muted: #A39E95; --line: #2E343D;
+    --accent: #8FC1FF; --accent-ink: #8FC1FF; --on-accent: #10151C; --tint: #1F2A38;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14171C; --surface: #1D2128; --fg: #F2EEE8; --muted: #A39E95; --line: #2E343D;
+  --accent: #8FC1FF; --accent-ink: #8FC1FF; --on-accent: #10151C; --tint: #1F2A38;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.6; padding-inline: 20px; padding-block: 0; }
+.topbar { height: 10px; background: var(--accent); margin-inline: -20px; }
+.wrap { max-width: 560px; margin-inline: auto; padding-block: 28px 56px; display: flex; flex-direction: column; gap: 24px; }
+.brand { font-size: 13px; font-style: italic; color: var(--muted); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; line-height: 1.12; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(30px, 8.4vw, 42px); }
+h2 { font-size: clamp(22px, 6vw, 28px); }
+h3 { font-size: 15px; letter-spacing: 0.02em; color: var(--accent-ink); }
+.hl { color: var(--accent-ink); }
+p { margin: 0; }
+.lead { font-size: 18px; }
+.meta { color: var(--muted); font-size: 14px; }
+button, .btn { font-family: var(--font-body); font-size: 16px; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 2px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; text-align: center; min-height: 52px; padding: 12px 24px; border-radius: 12px; border: 0; background: var(--accent-ink); color: var(--on-accent); font-weight: 600; text-decoration: none; }
+.btn:hover { filter: brightness(1.08); }
+.btn.ghost { background: transparent; color: var(--accent-ink); border: 1.5px solid var(--accent-ink); }
+.linkbtn { background: none; border: 0; padding: 8px 0; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; align-self: flex-start; }
+
+/* progress */
+.progress { display: flex; flex-direction: column; gap: 8px; }
+.bar { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.bar > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .25s ease; }
+
+/* answers */
+.answers { display: flex; flex-direction: column; gap: 10px; }
+.ans { text-align: left; width: 100%; padding: 14px 16px; border-radius: 12px; border: 1.5px solid var(--line); background: var(--surface); color: var(--fg); line-height: 1.45; transition: border-color .15s, background .15s; }
+.ans:hover { border-color: var(--accent); }
+.ans[aria-pressed="true"] { border-color: var(--accent-ink); background: var(--tint); }
+
+/* result */
+.badge { align-self: flex-start; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-ink); background: var(--tint); padding: 6px 12px; border-radius: 999px; }
+.block { display: flex; flex-direction: column; gap: 10px; }
+.phrases { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.phrases li { padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; font-style: italic; }
+.close { font-family: var(--font-display); font-weight: 800; font-size: 19px; line-height: 1.3; text-wrap: balance; }
+.cta { background: var(--surface); border: 1.5px solid var(--line); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+.cta.main { border-color: var(--accent-ink); }
+.kw { display: inline-block; font-family: var(--font-display); font-weight: 800; letter-spacing: 0.04em; background: var(--tint); color: var(--accent-ink); padding: 2px 10px; border-radius: 6px; }
+.second { font-size: 14px; color: var(--muted); }
+.scores { display: flex; flex-direction: column; gap: 8px; }
+.srow { display: grid; grid-template-columns: minmax(0, 1fr) 90px; gap: 10px; align-items: center; font-size: 14px; }
+.srow .t { min-width: 0; }
+.srow .b { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.srow .b i { display: block; height: 100%; background: var(--accent); }
+
+.help { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.help li { position: relative; padding-left: 22px; }
+.help li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+/* result: name and block heading share one size; accents in brand blue */
+#result h1, #result h2 { font-size: clamp(24px, 6.6vw, 30px); }
+#result .lead { color: var(--accent); font-weight: 700; font-size: 18px; }
+#result h3 { color: var(--accent); }
+#result .cta .close { color: var(--accent); font-size: 20px; }
+
+/* quiz question reads as a title: sentence case, larger, blue accent bar */
+#q { text-transform: none; font-size: clamp(23px, 6.6vw, 28px); line-height: 1.22; letter-spacing: -0.015em; padding-top: 14px; position: relative; }
+#q::before { content: ""; position: absolute; left: 0; top: 0; width: 44px; height: 4px; border-radius: 2px; background: var(--accent); }
+.about { max-width: 560px; margin-inline: auto; padding-block: 8px 40px; border-top: 1px solid var(--line); font-size: 13px; line-height: 1.55; color: var(--muted); display: flex; flex-direction: column; gap: 6px; }
+.about a { color: var(--accent-ink); }
+.author { display: flex; flex-direction: column; gap: 14px; padding: 16px; border: 1px solid var(--line); border-radius: 16px; font-size: 15px; line-height: 1.5; }
+.author p { margin: 0; }
+.author .who { display: flex; gap: 14px; align-items: center; }
+.author img { width: 76px; height: 76px; border-radius: 50%; object-fit: cover; flex: none; }
+.author .nm { font-weight: 700; font-size: 17px; }
+.author .rl { color: var(--muted); font-size: 14px; margin-bottom: 4px; }
+.author a { color: var(--accent-ink); font-weight: 600; font-size: 14px; }
+.author .why { padding-top: 12px; border-top: 1px solid var(--line); }
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.tab { font-family: var(--font-body); font-size: 15px; font-weight: 600; padding: 9px 16px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.tab[aria-pressed="true"] { background: var(--accent-ink); border-color: var(--accent-ink); color: var(--on-accent); }
+button.srow { width: 100%; text-align: left; background: none; border: 0; padding: 4px 0; color: var(--fg); font-family: var(--font-body); font-size: 14px; cursor: pointer; }
+button.srow:hover .t { text-decoration: underline; }
+@media (prefers-reduced-motion: reduce) { .bar > i, .ans { transition: none; } }
+</style>
+</head>
+<body>
+<div class="topbar"></div>
+<main class="wrap" id="app">
+
+  <section id="intro" class="block" style="gap:24px">
+    <p class="brand">@kononenko.blog</p>
+    <h1>Як ти <span class="hl">саботуєш</span> свій ріст?</h1>
+    <p class="lead">Іноді ти сама не помічаєш, як стримуєш себе. Пройди тест, щоб побачити свій тип і зрозуміти, що саме гальмує твій розвиток.</p>
+    <p class="meta">Час проходження 3 хвилини. Обирай відповідь, яка ближча тобі, а не ту, що здається правильною.</p>
+    <div class="author">
+      <div class="who">
+        <img src="data:image/jpeg;base64,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" width="76" height="76" alt="Олена Кононенко">
+        <div>
+          <p class="nm">Привіт, я Олена Кононенко</p>
+          <p class="rl">Коуч, менторка для експертів та підприємців</p>
+          <a href="https://www.instagram.com/kononenko.blog/" target="_blank" rel="noopener">Мій Instagram</a>
+        </div>
+      </div>
+      <p class="why">Цей тест для експертів і підприємців, які хочуть побачити, що саме їх стримує.</p>
+    </div>
+    <button class="btn" id="start" type="button">Почати тест</button>
+  </section>
+
+  <section id="quiz" class="block" style="gap:24px" hidden>
+    <div class="progress">
+      <div class="meta" id="count"></div>
+      <div class="bar"><i id="fill"></i></div>
+    </div>
+    <h2 id="q"></h2>
+    <div class="answers" id="answers"></div>
+    <button class="linkbtn" id="back" type="button">Назад</button>
+  </section>
+
+  <section id="result" class="block" style="gap:28px" hidden></section>
+
+</main>
+
+<footer class="about">
+  <p>Тест створено @kononenko.blog. © 2026. Усі права захищено.</p>
+  <p>Копіювання тексту, питань і структури тесту без письмової згоди авторки заборонено. Зв'язок з авторкою: <a href="https://t.me/KononenkoCoach" target="_blank" rel="noopener">t.me/KononenkoCoach</a></p>
+</footer>
+
+<script>
+var TYPES = {
+  P: {
+    name: "Перфекціоністка",
+    tag: "Ти не відпускаєш роботу, доки вона не стане ідеальною.",
+    h: "Вища планка не доводить, що ти вмієш",
+    paras: [
+      "Ти міряєш себе не тим, що вже зробила, а відстанню між результатом і ідеалом. Тому навіть вдала робота не дає відчуття, що ти справді експертка. Коли відгуку менше, ніж ти чекала, ти думаєш «значить, я виконала роботу недостатньо добре» і береш ще один круг доопрацювання. Зовні це виглядає як відповідальність, а всередині це спосіб довести собі, що ти на своєму місці.",
+      "Коли робота висить на «майже готово», вона не працює на тебе. Ти щоразу знаходиш, що «ще треба поправити», і витрачаєш години на правки, яких ніхто не помітить. Мало похвали за роботу звучить як вирок, хоча це просто норма. Кожне нове доопрацювання забирає сили, а разом із ними віру, що ти вже достатньо експертна. І чим довше це триває, тим страшніше показати свою роботу."
+    ],
+    helpLead: "Тобі допоможе вміння:",
+    helpItems: ["Випускати роботу, коли вона вже достатньо добра.", "Витримувати паузу після цього і не кидатися доопрацьовувати, коли відгуку менше, ніж хотілося.", "Відокремлювати оцінку роботи від оцінки себе."],
+    inviteHead: "Запрошую тебе на безкоштовну діагностику!",
+    invite: "Ми разом подивимось, що саме тебе зупиняє перед тим, як діяти, і як тобі навчитися працювати без нескінченних правок."
+  },
+  S: {
+    name: "Вічна студентка",
+    tag: "Ти завжди ще трохи не готова.",
+    h: "«Я не відкладаю, я готуюсь»",
+    paras: [
+      "Ти відкриваєш свій план і думаєш: «Спочатку доопрацюю його, щоб рухатись поступово», але чим далі рухаєшся, тим більше розумієш, чого ще не знаєш. Здається, що спершу треба добрати знань.",
+      "Ти пройшла багато навчань, і на них у тебе все виходило. Ти здавала завдання вчасно, приходила на дзвінки, рухалась і навіть мала результати. Але щойно програма закінчується, усе зупиняється. І ти питаєш себе: «Чому там я могла, а сама не можу?» Шукаєш новий курс або наставника, хоча в глибині душі знаєш, що робити.",
+      "Готових планів у тебе вже купа, а жоден так і не втілений. І коли нарешті наважуєшся спробувати ще раз, ти нервуєш і думаєш: «Я ще не готова»."
+    ],
+    helpLead: "Тобі допоможе:",
+    helpItems: ["Перехід від підготовки до першого реального кроку, навіть коли відчуття готовності ще немає.", "Власна структура, яка працює не гірше за чужий дедлайн.", "Розуміння, що вже відомого достатньо, щоб діяти."],
+    inviteHead: "Запрошую тебе на безкоштовну діагностику!",
+    invite: "Ми разом подивимось, що саме тебе зупиняє перед першим кроком, і як тобі навчитися діяти самостійно, без чужого дедлайну і нагляду."
+  },
+  O: {
+    name: "Людина-оркестр",
+    tag: "Ти робиш усе сама, бо так швидше і дешевше.",
+    h: "«Мені легше зробити самій, ніж пояснювати»",
+    paras: [
+      "Є задача, яку можна було б передати, але поки ти поясниш, введеш у курс і перевіриш результат, швидше і дешевше зробити самій.",
+      "Але за цим часто ховається інше: страх втратити контроль і думка «А якщо хтось зробить це краще за мене?» Зупинятися страшно: здається, що як тільки ти відпустиш, усе повалиться.",
+      "Тому вихідних в тебе майже немає, а клієнтські задачі автоматично йдуть першими, бо від них залежать гроші. Свої ж проєкти лишаються на «коли буде час». Ввечері ти думаєш: «Знову нічого не зробила для себе. Що зі мною не так?»"
+    ],
+    helpLead: "Тобі допоможе вміння:",
+    helpItems: ["Делегувати частину справ, навіть коли самій було б швидше.", "Довіряти, що інші впораються, і не перевіряти все за ними.", "Залишати час для того, що важливе саме тобі, а не лише для чужих задач."],
+    inviteHead: "Запрошую тебе на безкоштовну діагностику!",
+    invite: "Ми разом подивимось, що саме тебе утримує від того, щоб делегувати: страх втратити контроль, сумніви, що інші впораються краще, чи інше переконання. І розберемося, з чого тобі почати, щоб у твоєму тижні з'явилося місце для себе й свого проєкту."
+  },
+  R: {
+    name: "Спринтерка",
+    tag: "Ти легко стартуєш, але швидко втрачаєш інтерес.",
+    h: "«Спробувала, не пішло, значить, не моє»",
+    paras: [
+      "Ти загоряєшся новою ідеєю і перші тижні вкладаєшся на повну. Починати тобі легко, це ти вмієш і любиш, а потім стається перша серйозна складність або результат виходить гіршим, ніж ти чекала, і з'являється думка: «Спробувала, не пішло, значить, не моє».",
+      "Саме тоді ти помічаєш інший варіант, який виглядає перспективнішим і легшим. Ти кажеш собі, що це розумний перегляд стратегії, і переключаєшся.",
+      "Насправді ж ти класна спринтерка, але довгі дистанції тобі даються важко, тому ти обираєш легший шлях, щоб не розчаровуватись в собі й у тому, що не всі спроби будуть вдалими.",
+      "Списку розпочатого і покинутого в тебе вже досить, і кожну справу ти пояснюєш окремою поважною причиною. З думкою «Цього разу точно доведу до кінця» ти пробуєш знову."
+    ],
+    helpLead: "Тобі допоможе вміння:",
+    helpItems: ["Відрізняти «не моє» від «стало складно».","Давати собі другий шанс на спробу.","Відфільтровувати ідеї, які ведуть до цілі."],
+    inviteHead: "Запрошую тебе на безкоштовну діагностику!",
+    invite: "Ми разом подивимось, що саме змушує тебе перемикатись на складному етапі, і з чого тобі почати, щоб довести справу до очікуваного результату."
+  },
+  D: {
+    name: "Вічний двигун",
+    tag: "Ти робиш більше й більше, але все одно замало.",
+    h: "«Нормально, але треба більше»",
+    paras: [
+      "Ти робиш і не гаєш час! Здала проєкт, і одразу в голові наступна задача, бо попереду ще багато справ. Коли тебе хвалять, ти відповідаєш: «Нормально, але треба більше», а коли питають, як у тебе вийшов результат, кажеш, що усе вирішила кількість зробленого, а не твої здібності. Зупинитись страшно, бо насправді твоя самооцінка залежить від кількості зробленого!",
+      "Коли ти все ж лягаєш відпочити, замість полегшення приходить провина: «Лежу тут, а мала б хоч щось встигнути». Ти дивишся на тих, хто «встигає більше», і злишся і на себе, і на них. Список обов'язкового завжди довший за твої сили."
+    ],
+    helpLead: "Тобі допоможе вміння:",
+    helpItems: ["Зупинятися й помічати те, що вже зроблено.", "Розуміти, що ти не дорівнюєш своїй роботі й купі справ.", "Відпочивати без почуття, що ти щось пропускаєш."],
+    inviteHead: "Запрошую тебе на безкоштовну діагностику!",
+    invite: "Ми разом подивимось, що не дає тобі зупинитись, і з чого почати, щоб у твоєму житті було місце не лише для задач, а й для того, що приносить тобі задоволення."
+  },
+  H: {
+    name: "Спокійна у своїй силі",
+    tag: "Причина твого саботажу значно глибша.",
+    h: "Ти бачиш і свої досягнення, і свої помилки",
+    paras: [
+      "Твої звичні реакції на можливості, успіхи й невдачі здебільшого спокійні. Ти визнаєш свої досягнення й не знецінюєш їх, а помилку сприймаєш як частину роботи.",
+      "Якщо ти все одно відчуваєш, що щось гальмує твій розвиток і тебе не влаштовує твій темп, причина може лежати значно глибше за звичні реакції."
+    ],
+    helpLead: "Поки що можна почати з цього:",
+    helpItems: ["Записувати свої досягнення, щоб не забувати про них", "Не порівнювати свій темп із чужим", "Залишати час на відпочинок і на власні цілі"],
+    inviteHead: "Відчуваєш, що можеш більше?",
+    invite: "Ти справляєшся, але відчуваєш, що могла б швидше, більше і легше. На безкоштовній консультації ми разом подивимось, що саме тебе гальмує: яка думка, звичка чи страх стоїть за твоїм темпом і що тобі робити з цим далі."
+  }
+};
+
+var QUESTIONS = [
+  { q: "Ти вирішила взятися за свою ціль. Що далі?", a: {
+    P: "Спершу перевіряю, чи все готове, і допрацьовую.",
+    S: "Спершу вивчаю, чого не знаю, готую план, потім починаю.",
+    O: "Якщо з'являється задача від клієнта, роблю її, а свою — коли вистачить часу.",
+    R: "Починаю легко, а якщо з'являється цікавіша ідея, так само легко перемикаюсь.",
+    D: "Просто роблю, не зупиняюсь: попереду ще багато справ.",
+    H: "Планую, з чого почати, і спокійно беруся до діла." } },
+  { q: "Результат гірший, ніж ти очікувала. Що робиш?", a: {
+    P: "Переглядаю все по пунктах і виправляю, бо має бути ідеально.",
+    S: "Думаю, що мені бракує знань/навичок, і шукаю, де повчитися.",
+    O: "Нічого страшного, швидко виправлю все сама.",
+    R: "Вирішую, що це не моє, і беруся за інше.",
+    D: "Одразу беруся за наступну задачу: треба надолужити.",
+    H: "Дивлюсь, що пішло не так, роблю висновки й іду далі." } },
+  { q: "Тобі дякують і кажуть, що ти молодець. Що думаєш?", a: {
+    P: "Дякую, але якби допрацювала, було б значно краще.",
+    S: "Добре, що не спитали про те, чого я ще не знаю.",
+    O: "Дякую, я просто зробила все, що від мене залежало.",
+    R: "Там нічого складного, просто пощастило.",
+    D: "Нормально, але треба більше.",
+    H: "Дякую, мені приємно: я знаю, що доклала зусиль." } },
+  { q: "Настав час проявитися: опублікувати допис, виступити чи запропонувати співпрацю. Що далі?", a: {
+    P: "Виправляю деталі, щоб було бездоганно.",
+    S: "Думаю, що ще не готова, нервую і, мабуть, нічого не роблю.",
+    O: "Відкладаю і займаюсь іншими справами.",
+    R: "Залежить від задачі: що легко, роблю першим, інше відкладаю.",
+    D: "Швидко роблю й іду далі: попереду ще багато справ.",
+    H: "Публікую, коли готово. Хвилююсь трохи, але це не зупиняє." } },
+  { q: "Тебе просять назвати вартість роботи або пора підняти ціну. Що відбувається?", a: {
+    P: "Довго думаю, чи варта моя робота такої суми, і відкладаю.",
+    S: "Думаю, що спершу треба підвищити компетенцію.",
+    O: "Для цього треба більше обов'язків, а я виснажусь, тому лишаю все як є.",
+    R: "Називаю суму, а якщо клієнт вагається, одразу знижую.",
+    D: "Називаю суму й беруся ще за одну задачу, щоб заробити більше.",
+    H: "Називаю ціну, яку вважаю чесною, і не виправдовуюсь." } },
+  { q: "Тебе просять виступити як експертку. Що відбувається?", a: {
+    P: "Погоджуюсь, але готуюсь так, щоб не було жодної неточності.",
+    S: "Відмовляюсь, думаю, що знань ще замало.",
+    O: "Мабуть, відмовлюсь: не поєдную це з іншими справами.",
+    R: "Охоче погоджуюсь, а перед виступом думаю, що готувалась замало.",
+    D: "Погоджуюсь одразу: чим більше роблю, тим краще.",
+    H: "Погоджуюсь, якщо це мені цікаво, і готуюсь без фанатизму." } },
+  { q: "Тобі пропонують більший проєкт, ніж ти звикла брати. Що думаєш?", a: {
+    P: "Боюсь, що вимоги будуть вищими і я не зможу їм відповісти.",
+    S: "Мені ще бракує досвіду для такого масштабу.",
+    O: "Беруся, але власні справи знову відкладаються.",
+    R: "Цікаво, берусь!",
+    D: "Беруся одразу: ціль вища, тож працюватиму ще більше.",
+    H: "Оцінюю свої сили, обговорюю умови й беруся, якщо підходить." } },
+  { q: "Тебе питають, як у тебе вийшов цей результат. Що відповідаєш?", a: {
+    P: "Розповідаю, але додаю, що є недоліки, які я б виправила.",
+    S: "Кажу, що допомогли знання з курсів.",
+    O: "Кажу, що просто робила те, що потрібно.",
+    R: "Все якось само склалося.",
+    D: "Просто пощастило.",
+    H: "Розповідаю як було: що вдалося через мої зусилля і знання." } }
+];
+
+var LINK = "https://t.me/KononenkoCoach";
+var API = "https://script.google.com/macros/s/AKfycbxf5iVCldV4wMcYnJfopoPcW9ixWAxwf6bNffCH_y-Udyq_3B1o4msnmZ43EP1NvrbD/exec";
+
+// Надсилає подію на сервер. Якщо сервер не відповів, тест усе одно працює.
+function track(payload) {
+  try {
+    var body = JSON.stringify(payload);
+    if (navigator.sendBeacon && navigator.sendBeacon(API, new Blob([body], { type: "application/json" }))) return;
+    fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: body, keepalive: true }).catch(function () {});
+  } catch (e) {}
+}
+
+function begin() {
+  state = { i: 0, picks: [] };
+  renderQuestion();
+  show("quiz");
+  track({ event: "start" });
+}
+
+function report() {
+  var s = score();
+  var res = pickTop(s);
+  track({ event: "finish", result: s.H >= 5 ? "H" : res.primary, scores: s });
+}
+var ORDER = ["P", "S", "O", "R", "D"];
+var state = { i: 0, picks: [] };
+var $ = function (id) { return document.getElementById(id); };
+
+function shuffle(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+
+function show(id) {
+  ["intro", "quiz", "result"].forEach(function (s) { $(s).hidden = s !== id; });
+  window.scrollTo(0, 0);
+}
+
+function renderQuestion() {
+  var item = QUESTIONS[state.i];
+  $("count").textContent = "Питання " + (state.i + 1) + " з " + QUESTIONS.length;
+  $("fill").style.width = (state.i / QUESTIONS.length * 100) + "%";
+  $("q").textContent = item.q;
+  $("back").hidden = state.i === 0;
+  var box = $("answers");
+  box.innerHTML = "";
+  shuffle(Object.keys(item.a)).forEach(function (key) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "ans";
+    b.setAttribute("aria-pressed", state.picks[state.i] === key ? "true" : "false");
+    b.textContent = item.a[key];
+    b.addEventListener("click", function () { choose(key, b); });
+    box.appendChild(b);
+  });
+}
+
+function choose(key, btn) {
+  state.picks[state.i] = key;
+  Array.prototype.forEach.call($("answers").children, function (c) { c.setAttribute("aria-pressed", "false"); });
+  btn.setAttribute("aria-pressed", "true");
+  setTimeout(function () {
+    if (state.i < QUESTIONS.length - 1) { state.i++; renderQuestion(); }
+    else { report(); renderResult(); }
+  }, 220);
+}
+
+function score() {
+  var s = { P: 0, S: 0, O: 0, R: 0, D: 0, H: 0 };
+  state.picks.forEach(function (k) { if (k) s[k]++; });
+  return s;
+}
+
+function ranked(s) {
+  return ORDER.slice().sort(function (a, b) { return s[b] - s[a] || ORDER.indexOf(a) - ORDER.indexOf(b); });
+}
+
+function esc(t) { var d = document.createElement("div"); d.textContent = t; return d.innerHTML; }
+
+function pickTop(s) {
+  var max = Math.max.apply(null, ORDER.map(function (k) { return s[k]; }));
+  var tied = ORDER.filter(function (k) { return s[k] === max; });
+  var primary = tied[0];
+  if (tied.length > 1) {
+    for (var i = 0; i < state.picks.length; i++) {
+      if (tied.indexOf(state.picks[i]) !== -1) { primary = state.picks[i]; break; }
+    }
+  }
+  return { primary: primary, tied: tied.filter(function (k) { return k !== primary; }) };
+}
+
+function tgLink(key, cands) {
+  var names = [TYPES[key].name].concat(cands.filter(function (k) { return k !== key; }).map(function (k) { return TYPES[k].name; }));
+  var list = names.length > 1 ? names.slice(0, -1).join(", ") + " і " + names[names.length - 1] : names[0];
+  var msg = "Привіт! Пройшла тест «Як ти саботуєш свій ріст?». Мій результат: " + list + ". Хочу отримати розбір своєї ситуації.";
+  return LINK + "?text=" + encodeURIComponent(msg);
+}
+
+function renderResult(sel) {
+  var s = score();
+  var r = ranked(s);
+  var res = pickTop(s);
+  var healthy = s.H >= 5;
+  var cands = healthy ? [] : (res.tied.length ? [res.primary].concat(res.tied) : (s[r[1]] >= 3 ? [r[0], r[1]] : []));
+  var key = sel || (healthy ? "H" : res.primary);
+  var top = TYPES[key];
+  var html = "";
+  html += '<span class="badge">' + (key === "H" ? "Твій результат" : "Так ти саботуєш свій ріст") + '</span>';
+  if (cands.length > 1) {
+    html += '<div class="block"><p class="meta">' + (res.tied.length
+      ? 'У тебе порівну відповідей у кількох типах. Переглянь кожен.'
+      : 'Другий тип теж про тебе. Його можна переглянути.') + '</p><div class="tabs">' +
+      cands.map(function (k) {
+        return '<button type="button" class="tab" data-k="' + k + '" aria-pressed="' + (k === key) + '">' + esc(TYPES[k].name) + '</button>';
+      }).join("") + '</div></div>';
+  }
+  html += '<div class="block"><h1>' + esc(top.name) + '</h1><p class="lead">' + esc(top.tag) + '</p></div>';
+  html += '<div class="block"><h2>' + esc(top.h) + '</h2>' +
+    top.paras.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") + "</div>";
+  html += '<div class="block"><h3>Що тобі допоможе?</h3><p>' + esc(top.helpLead) + '</p><ul class="help">' +
+    top.helpItems.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + '</ul></div>';
+  html += '<div class="cta main">' + (top.inviteHead ? '<p class="close">' + esc(top.inviteHead) + '</p>' : '') + '<p>' + esc(top.invite) + '</p>' +
+    '<a class="btn" data-cta="' + key + '" href="' + tgLink(key, cands) + '" target="_blank" rel="noopener">Отримати розбір</a></div>';
+  html += '<div class="block"><h3>Як розподілились твої відповіді</h3><p class="meta">Натисни на тип, щоб прочитати його результат.</p><div class="scores">' +
+    ORDER.concat(["H"]).sort(function (a, b) { return s[b] - s[a]; }).map(function (k) {
+      var val = s[k];
+      if (k === "H" && !healthy && val > 0 && val >= s[r[0]]) val -= 0.5;
+      var pct = Math.round(val / QUESTIONS.length * 100);
+      return '<button type="button" class="srow" data-k="' + k + '"><span class="t">' + esc(TYPES[k].name) + '</span><span class="b"><i style="width:' + pct + '%"></i></span></button>';
+    }).join("") + "</div></div>";
+  html += '<button class="linkbtn" id="again" type="button">Пройти тест ще раз</button>';
+  $("result").innerHTML = html;
+  Array.prototype.forEach.call($("result").querySelectorAll("[data-k]"), function (el) {
+    el.addEventListener("click", function () { renderResult(el.getAttribute("data-k")); });
+  });
+  $("again").addEventListener("click", begin);
+  var cta = $("result").querySelector("[data-cta]");
+  if (cta) cta.addEventListener("click", function () { track({ event: "cta", result: cta.getAttribute("data-cta") }); });
+  show("result");
+}
+
+$("start").addEventListener("click", begin);
+$("back").addEventListener("click", function () { if (state.i > 0) { state.i--; renderQuestion(); } });
+</script>
+</body>
+</html>
